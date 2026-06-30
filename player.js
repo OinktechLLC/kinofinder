@@ -7,24 +7,27 @@
 const SOURCES = {
   kinobox: {
     label: "KinoBox TV",
-    // Подставляются {imdb_id}, {kp_id}, {title}, {year}
+    // Embed: https://kinoboxtv.tatnet.app/embed/#KP_ID
     buildUrl: ({ imdbId, kpId }) => {
       const base = "https://kinoboxtv.tatnet.app/embed/#";
-      const params = new URLSearchParams();
-      if (imdbId) params.set("imdb_id", imdbId);
-      if (kpId) params.set("kp_id", kpId);
+      if (kpId) return base + encodeURIComponent(kpId);
+      if (imdbId) return base + encodeURIComponent(imdbId);
+      return base;
+    }
   },
   kinoplayertop: {
     label: "KinoPlayer Top",
+    // Embed: https://kinoplayertop.tatnet.app/embed/#KP_ID
     buildUrl: ({ imdbId, kpId }) => {
       const base = "https://kinoplayertop.tatnet.app/embed/#";
-      const params = new URLSearchParams();
-      if (imdbId) params.set("imdb_id", imdbId);
-      if (kpId) params.set("kinopoisk_id", kpId);
-  },
+      if (kpId) return base + encodeURIComponent(kpId);
+      if (imdbId) return base + encodeURIComponent(imdbId);
+      return base;
+    }
+  }
 };
 
-const RACE_TIMEOUT_MS = 9000;
+const RACE_TIMEOUT_MS = 15000;
 
 function qs(name) {
   return new URLSearchParams(location.search).get(name);
@@ -87,8 +90,8 @@ function init() {
     const frame = frames[key];
     frame.addEventListener("load", () => onFrameLoad(key), { once: false });
     frame.addEventListener("error", () => {
-      buttons[key].disabled = true;
-      buttons[key].textContent = SOURCES[key].label + " (недоступен)";
+      console.log(`[KinoFinder] Frame error for ${key}`);
+      markReady(key);
     });
   });
 
@@ -107,19 +110,16 @@ function init() {
   });
 
   // если за разумное время ни один источник не отдал load — покажем первый
-  // загрузившийся (в т.ч. с ошибкой контента) либо предложим открыть вручную
   setTimeout(() => {
     if (resolved) return;
-    if (loadedKeys.length > 0) {
-      resolved = true;
-      showSource(loadedKeys[0]);
-      return;
-    }
-    statusText.innerHTML =
-      'Не получилось автоматически найти плеер. ' +
-      'Попробуй выбрать источник вручную сверху, когда кнопка станет активной, ' +
-      'либо проверь соединение.';
-    statusEl.classList.add("kf-error");
+
+    // Force show first source on timeout
+    const firstKey = Object.keys(frames)[0];
+    resolved = true;
+    console.log("[KinoFinder] Timeout reached, forcing", firstKey);
+    showSource(firstKey);
+
+    statusText.textContent = "Плеер показан (таймаут). Переключайся кнопками сверху.";
   }, RACE_TIMEOUT_MS);
 }
 
