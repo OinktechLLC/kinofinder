@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>KinoFinder — плеер</title>
+<link rel="stylesheet" href="player.css" />
+</head>
+<body>
+  <header class="kf-header">
+    <div class="kf-title">
+      <span class="kf-logo">KinoFinder</span>
+      <span id="kf-movie-title" class="kf-movie-title">Загрузка…</span>
+    </div>
+    <div class="kf-sources">
+      <button class="kf-source-btn" data-src="kinobox">KinoBox TV</button>
+      <button class="kf-source-btn" data-src="kinoplayertop">KinoPlayer Top</button>
+    </div>
+  </header>
+
+  <main class="kf-stage">
+    <div id="kf-status" class="kf-status">
+      <div class="kf-spinner"></div>
+      <p id="kf-status-text">Ищем плеер с фильмом…</p>
+    </div>
+
+    <iframe
+      id="kf-frame-kinobox"
+      class="kf-frame"
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+
+    <iframe
+      id="kf-frame-kinoplayertop"
+      class="kf-frame"
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </main>
+
+  <script src="player.js"></script>
+</body>
+</html>

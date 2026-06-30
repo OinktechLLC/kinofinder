@@ -1,0 +1,47 @@
+#kinofinder-watch-btn {
+  position: fixed;
+  z-index: 999999;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00d4ff, #7b2fff);
+  color: #fff;
+  font: 600 15px/1 -apple-system, Segoe UI, Roboto, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(123, 47, 255, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#kinofinder-watch-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 26px rgba(123, 47, 255, 0.55);
+}
+
+#kinofinder-watch-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+#kinofinder-watch-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+#kinofinder-watch-btn.kf-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  #kinofinder-watch-btn {
+    right: 14px;
+    bottom: 14px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
