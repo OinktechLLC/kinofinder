@@ -8,26 +8,20 @@ const SOURCES = {
   kinobox: {
     label: "KinoBox TV",
     // Подставляются {imdb_id}, {kp_id}, {title}, {year}
-    buildUrl: ({ imdbId, kpId, title, year }) => {
+    buildUrl: ({ imdbId, kpId }) => {
       const base = "https://kinoboxtv.tatnet.app/embed/#";
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kp_id", kpId);
-      if (!imdbId && !kpId && title) params.set("title", title);
-      if (year) params.set("year", year);
-      return base + "?" + params.toString();
     },
   },
   kinoplayertop: {
     label: "KinoPlayer Top",
-    buildUrl: ({ imdbId, kpId, title, year }) => {
+    buildUrl: ({ imdbId, kpId }) => {
       const base = "https://kinoplayertop.tatnet.app/embed/#";
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kinopoisk_id", kpId);
-      if (!imdbId && !kpId && title) params.set("title", title);
-      if (year) params.set("year", year);
-      return base + "?" + params.toString();
     },
   },
 };
