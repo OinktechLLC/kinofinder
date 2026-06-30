@@ -9,7 +9,7 @@ const SOURCES = {
     label: "KinoBox TV",
     // Подставляются {imdb_id}, {kp_id}, {title}, {year}
     buildUrl: ({ imdbId, kpId, title, year }) => {
-      const base = "https://kinoboxtv.tatnet.app/#/films";
+      const base = "https://kinoboxtv.tatnet.app/embed/#";
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kp_id", kpId);
@@ -21,7 +21,7 @@ const SOURCES = {
   kinoplayertop: {
     label: "KinoPlayer Top",
     buildUrl: ({ imdbId, kpId, title, year }) => {
-      const base = "https://kinoplayertop.tatnet.app/#/films";
+      const base = "https://kinoplayertop.tatnet.app/embed/#";
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kinopoisk_id", kpId);
