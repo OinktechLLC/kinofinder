@@ -13,7 +13,6 @@ const SOURCES = {
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kp_id", kpId);
-    },
   },
   kinoplayertop: {
     label: "KinoPlayer Top",
@@ -22,7 +21,6 @@ const SOURCES = {
       const params = new URLSearchParams();
       if (imdbId) params.set("imdb_id", imdbId);
       if (kpId) params.set("kinopoisk_id", kpId);
-    },
   },
 };
 
