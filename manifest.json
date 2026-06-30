@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "KinoFinder — плеер для IMDb и Кинопоиска",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "На странице фильма/сериала на IMDb или Кинопоиске добавляет кнопку «Смотреть онлайн» и открывает окно с плеером (kinoboxtv.tatnet.app / kinoplayertop.tatnet.app) — показывается тот источник, который откроется первым.",
   "icons": {
     "16": "icons/icon16.png",
